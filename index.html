@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Great Indian Tiffin Box · An Experience Publication</title>
+
+  <!-- Preload Geograph Regular & Bold fonts so there is no flash of a different font -->
+  <link rel="preload" href="assets/fonts/geographwebregular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/geographwebbold.ttf" as="font" type="font/ttf" crossorigin>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ MINIMAL PRELOADER ============ -->
+  <div id="loader" aria-live="polite">
+    <div class="loader-box">
+      <div class="loader-title">The Great Indian Tiffin Box</div>
+      <div class="loader-bar"><i id="loaderFill"></i></div>
+      <div class="loader-note" id="loaderNote">Packing the tiffin…</div>
+    </div>
+  </div>
+
+  <!-- ============ STAGE (fixed 1920×1080 illustration space, scaled + letterboxed) ============ -->
+  <div id="viewport">
+    <div id="stage">
+
+      <!-- ───────── SCENE 1 · OPENING (pre-made animation) ───────── -->
+      <section class="scene" id="scene-intro" data-scene="intro" aria-label="Scene 1: Opening">
+        <video id="introVideo" muted playsinline preload="auto"
+               src="assets/references/first%20animation%202.mp4"></video>
+        <!-- sequential dialogue bubbles shown once the animation settles on the mother & boy -->
+        <div id="boySpeech" class="speech speech-boy" aria-live="polite">
+          <span class="speech-name">Amogh</span>
+          <span class="speech-line">&ldquo;What&rsquo;s for tiffin today, Mom?&rdquo;</span>
+        </div>
+        <div id="momSpeech" class="speech speech-mom" aria-live="polite">
+          <span class="speech-name">Mother</span>
+          <span class="speech-line">&ldquo;What would you like to eat?&rdquo;</span>
+        </div>
+      </section>
+
+      <!-- ───────── SCENE 2 · FILTERS (options) ───────── -->
+      <section class="scene" id="scene-options" data-scene="options" aria-label="Scene 2: Choose your tiffin">
+        <img class="layer" id="optBg"     src="assets/options%20scene/options_bg.png"  alt="">
+        <img class="layer" id="optBoy"    src="assets/options%20scene/excited%20boy.png" alt="">
+        <img class="layer" id="optMother" src="assets/options%20scene/mother.png"       alt="">
+        <div class="layer" id="optHandWrap">
+          <img class="layer" src="assets/options%20scene/options%20hand.png" alt="">
+        </div>
+
+        <!-- buttons hovering over Mom's open palm -->
+        <div id="palm">
+          <!-- panel A: Veg / Non-veg -->
+          <div class="palm-panel" id="panelDiet">
+            <div class="palm-title">What will it be?</div>
+            <div class="palm-row">
+              <button class="tag-btn" data-diet="veg" style="--c:#2f7d3a">
+                <span class="food-mark veg"></span><span>Veg</span>
+              </button>
+              <button class="tag-btn" data-diet="non-veg" style="--c:#a8321f">
+                <span class="food-mark nonveg"></span><span>Non-veg</span>
+              </button>
+            </div>
+          </div>
+          <!-- panel B: mood -->
+          <div class="palm-panel" id="panelMood">
+            <div class="palm-title">Now with&hellip;</div>
+            <div class="palm-grid">
+              <button class="tag-btn" data-mood="spicy"   style="--c:#c4351c"><i>🌶️</i><span>Spicy</span></button>
+              <button class="tag-btn" data-mood="sweet"   style="--c:#c4577f"><i>🍯</i><span>Sweet</span></button>
+              <button class="tag-btn" data-mood="tangy"   style="--c:#7f9a1c"><i>🍋</i><span>Tangy</span></button>
+              <button class="tag-btn" data-mood="crunchy" style="--c:#b87420"><i>🥜</i><span>Crunchy</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────── SCENE 3 · LOADING & DISH-CHOICE (exploring states → 4 dishes) ───────── -->
+      <section class="scene" id="scene-dishes" data-scene="dishes" aria-label="Scene 3: Exploring Indian cuisines">
+        <div class="dishes-backdrop"></div>
+
+        <!-- Step A: ~3.5-4s loading animation -->
+        <div id="dishesLoading" class="dishes-stage">
+          <div class="tiffin-loader" aria-hidden="true">
+            <svg class="tiffin-svg" viewBox="0 0 220 240">
+              <!-- rising steam wisps -->
+              <path class="t-steam s1" d="M82 42 C74 28, 90 16, 82 4" />
+              <path class="t-steam s2" d="M110 38 C102 22, 118 12, 110 0" />
+              <path class="t-steam s3" d="M138 42 C130 28, 146 16, 138 4" />
+              <!-- handle & side latches -->
+              <path class="t-latch" d="M44 82 L44 198 M176 82 L176 198" />
+              <path class="t-handle" d="M72 64 C72 44, 148 44, 148 64" />
+              <!-- tier 1 (top lid + dabba) -->
+              <g class="t-tier tier-1">
+                <rect x="54" y="64" width="112" height="14" rx="7" fill="#ff113e" />
+                <rect x="48" y="76" width="124" height="36" rx="8" fill="#fffdf6" stroke="#4a2412" stroke-width="4" />
+                <line x1="60" y1="94" x2="160" y2="94" stroke="#ff113e" stroke-width="3" stroke-linecap="round" opacity=".55" />
+              </g>
+              <!-- tier 2 (middle dabba) -->
+              <g class="t-tier tier-2">
+                <rect x="48" y="116" width="124" height="40" rx="8" fill="#fff7e8" stroke="#4a2412" stroke-width="4" />
+                <line x1="60" y1="136" x2="160" y2="136" stroke="#e8a05a" stroke-width="3" stroke-linecap="round" opacity=".65" />
+              </g>
+              <!-- tier 3 (bottom dabba) -->
+              <g class="t-tier tier-3">
+                <rect x="48" y="160" width="124" height="44" rx="10" fill="#fdebd0" stroke="#4a2412" stroke-width="4" />
+                <line x1="60" y1="182" x2="160" y2="182" stroke="#ff113e" stroke-width="3" stroke-linecap="round" opacity=".55" />
+              </g>
+            </svg>
+          </div>
+          <h2 class="dishes-load-title">We&rsquo;re exploring the diverse cuisines of every state of India!</h2>
+          <div class="dishes-states" aria-hidden="true">
+            <span class="state-pill active">Bihar</span>
+            <span class="state-pill">Himachal Pradesh</span>
+            <span class="state-pill">Uttar Pradesh</span>
+            <span class="state-pill">Kashmir</span>
+          </div>
+          <div class="dishes-progress"><i id="dishesProgressFill"></i></div>
+        </div>
+
+        <!-- Step B: 4 dish cards in a row -->
+        <div id="dishesChoice" class="dishes-stage" hidden>
+          <h2 class="dishes-heading" id="dishesHeading">We found a few dishes you might love</h2>
+          <div class="dishes-row" id="dishesRow">
+            <!-- 1. Lemon Rice (MAIN clickable card) -->
+            <button type="button" class="dish-card is-main" id="cardLemonRice" data-dish="lemon-rice">
+              <span class="dish-badge">Top Match</span>
+              <div class="dish-photo-wrap">
+                <img src="assets/options%20scene/lemon_rice.png" alt="Lemon Rice">
+              </div>
+              <div class="dish-info">
+                <div class="dish-name">Lemon Rice</div>
+                <div class="dish-cta">Tap to cook &rarr;</div>
+              </div>
+            </button>
+
+            <!-- 2. Tudkiya Bhath (non-clickable) -->
+            <div class="dish-card is-muted" aria-disabled="true">
+              <div class="dish-photo-wrap">
+                <img src="assets/options%20scene/Tudkiya_Bhath.png" alt="Tudkiya Bhath">
+              </div>
+              <div class="dish-info">
+                <div class="dish-name">Tudkiya Bhath</div>
+              </div>
+            </div>
+
+            <!-- 3. Aloo Chop (non-clickable) -->
+            <div class="dish-card is-muted" aria-disabled="true">
+              <div class="dish-photo-wrap">
+                <img src="assets/options%20scene/Aloo_chop.png" alt="Aloo Chop">
+              </div>
+              <div class="dish-info">
+                <div class="dish-name">Aloo Chop</div>
+              </div>
+            </div>
+
+            <!-- 4. Chhangban (non-clickable) -->
+            <div class="dish-card is-muted" aria-disabled="true">
+              <div class="dish-photo-wrap">
+                <img src="assets/options%20scene/chhang_ban.png" alt="Chhangban">
+              </div>
+              <div class="dish-info">
+                <div class="dish-name">Chhangban</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step C: Confirmation message after choosing Lemon Rice -->
+          <div id="dishesConfirm" class="dishes-confirm" aria-live="polite">
+            <span>Great choice! Now it&rsquo;s time to cook!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────── SCENE 4 · KITCHEN (interactive cooking) ───────── -->
+      <section class="scene" id="scene-kitchen" data-scene="kitchen" aria-label="Scene 4: Cook the Lemon Rice">
+
+        <!-- everything that blurs while a bowl is held -->
+        <div class="layer" id="kCounter">
+          <img class="layer" id="kBg" src="assets/kitchen%20scene/Kitchen_bg.png" alt="">
+          <img class="layer" src="assets/kitchen%20scene/stove.png" alt="">
+          <img class="layer" id="kPan" src="assets/kitchen%20scene/pan.png" alt="">
+          <!-- pan contents are rendered here by script.js (progressive states) -->
+          <svg class="layer" id="panContents" viewBox="0 0 1920 1080" aria-hidden="true"></svg>
+          <div class="layer" id="kSteam" aria-hidden="true"></div>
+
+          <img class="layer bowl" data-bowl="rice"    src="assets/kitchen%20scene/rice.png"            alt="Rice bowl">
+          <img class="layer bowl" data-bowl="masala"  src="assets/kitchen%20scene/masala.png"          alt="Masala bowl">
+          <img class="layer bowl" data-bowl="onion"   src="assets/kitchen%20scene/onion.png"           alt="Onion bowl">
+          <img class="layer bowl" data-bowl="lemon"   src="assets/kitchen%20scene/lemon%20juice.png"   alt="Lemon juice bowl">
+          <img class="layer bowl" data-bowl="nuts"    src="assets/kitchen%20scene/cashew%20and%20nuts.png" alt="Cashews and peanuts bowl">
+          <img class="layer bowl" data-bowl="oil"     src="assets/kitchen%20scene/oil.png"             alt="Oil bowl">
+          <div id="dropHint"><span>pour here</span></div>
+        </div>
+
+        <div id="bowlChecks"></div>
+
+        <!-- Mom's cursor-driven arm: forearm (back) → shoulder sleeve → hand -->
+        <img class="layer arm" id="armForearm"  src="assets/kitchen%20scene/forearm.png"  alt="">
+        <img class="layer arm" id="armShoulder" src="assets/kitchen%20scene/shoulder.png" alt="">
+        <div class="layer arm" id="armHand">
+          <img class="layer" id="heldBowl" alt="" hidden>
+          <img class="layer" id="armWrist" src="assets/kitchen%20scene/wrist.png" alt="">
+        </div>
+
+        <canvas class="layer" id="fxCanvas" width="1920" height="1080"></canvas>
+        <img class="layer" id="kMother" src="assets/kitchen%20scene/still%20mother.png" alt="">
+
+        <!-- recipe card + progress -->
+        <div id="recipeCard">
+          <div class="rc-kicker">Today&rsquo;s tiffin</div>
+          <div class="rc-title">Lemon Rice</div>
+          <div class="rc-meta">Serves 2 &nbsp;·&nbsp; Prep 10 min &nbsp;·&nbsp; Cook 15 min</div>
+          <div class="rc-dots" id="rcDots"></div>
+          <div class="rc-count"><b id="rcCount">0</b> / 6 bowls in the pan</div>
+        </div>
+        <button type="button" id="kSkipBtn" aria-label="Skip cooking">Skip &rarr;</button>
+        <div id="kDone"><span>Your Lemon Rice is ready!</span></div>
+        <div id="kCursor"></div>
+      </section>
+
+      <!-- ───────── SCENE 5 · TITLE (two videos) ───────── -->
+      <section class="scene" id="scene-title" data-scene="title" aria-label="Scene 5: The handover">
+        <video class="layer title-video" id="titleVideo1" muted playsinline preload="auto"
+               src="assets/title%20scene/title%20scene%201_1.mp4"></video>
+        <video class="layer title-video" id="titleVideo2" muted playsinline preload="auto"
+               src="assets/title%20scene/title%20scene%202.mp4"></video>
+      </section>
+
+      <!-- ───────── SCENE 5B · SCHOOL (final) ───────── -->
+      <section class="scene" id="scene-school" data-scene="school" aria-label="Scene 5: School lunch">
+        <!-- stacking order is taken from still 5: back → front (background is frozen last frame of titleVideo2).
+             Each .student wrapper holds both the character layer and its above-head name label so they move,
+             bob, scale on hover, and animate in together. -->
+        <div class="layer student" data-student="boy3">
+          <img class="layer" src="assets/school%20scene/boy%203.png" alt="Jash">
+          <span class="student-head-label">Jash</span>
+        </div>
+        <div class="layer student" data-student="girl1">
+          <img class="layer" src="assets/school%20scene/girl%201.png" alt="Suhani">
+          <span class="student-head-label">Suhani</span>
+        </div>
+        <div class="layer student" data-student="main">
+          <img class="layer" src="assets/school%20scene/main%20boy.png" alt="Amogh">
+          <span class="student-head-label">Amogh</span>
+        </div>
+        <img class="layer" id="schoolBench" src="assets/school%20scene/bench.png" alt="">
+        <div class="layer student" data-student="boy2">
+          <img class="layer" src="assets/school%20scene/boy%202.png" alt="Anubhav">
+          <span class="student-head-label">Anubhav</span>
+        </div>
+        <div class="layer student" data-student="girl2">
+          <img class="layer" src="assets/school%20scene/girl%202.png" alt="Keya">
+          <span class="student-head-label">Keya</span>
+        </div>
+
+        <!-- Conversational speech-bubble hover box (#ffeaca at 70% opacity) with a tail pointing to the speaker -->
+        <div id="studentHoverCard" role="status" aria-live="polite">
+          <div class="shc-header">
+            <span class="shc-name" id="shcName"></span>
+            <span class="shc-sep" aria-hidden="true">&middot;</span>
+            <span class="shc-state" id="shcState"></span>
+          </div>
+          <p class="shc-line" id="shcLine"></p>
+          <span class="shc-tail" id="shcTail" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- debug aid: ?ref=1 overlays the matching reference still at 50 % -->
+      <img id="refOverlay" alt="">
+
+      <!-- full-screen #ff113e wash for Scene 3 → Scene 4 transition -->
+      <div id="redWash" aria-hidden="true"></div>
+    </div>
+
+    <!-- Top-left book logo and bottom-right scroll hint in Scene 5: anchored to #viewport so they never clip on 16:10 screens -->
+    <div id="schoolLogoCard" aria-hidden="true">
+      <img id="schoolLogo" src="assets/school%20scene/Logo_Book.png" alt="The Great Indian Tiffin Box">
+    </div>
+    <a href="#statesSection" id="scrollDownHint" aria-label="Scroll down to explore the states">
+      <span>Scroll down to explore the states</span>
+      <i class="scroll-arrow">&darr;</i>
+    </a>
+
+    <!-- ============ HUD (hint text inside the 100vh stage viewport) ============ -->
+    <div id="hud">
+      <div id="hint" role="status"></div>
+    </div>
+  </div>
+
+  <!-- ============ SCROLLABLE SECTION: STATES & UNION TERRITORIES OF INDIA ============ -->
+  <section id="statesSection" aria-label="Food from all states and Union Territories of India">
+    <div class="states-inner">
+
+      <!-- Top-left search bar -->
+      <div class="states-toolbar">
+        <div class="states-search-wrap">
+          <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="16.2" y1="16.2" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="stateSearchInput" placeholder="Search for a state or Union Territory…" autocomplete="off" aria-label="Search states and Union Territories">
+          <button type="button" id="stateSearchClear" class="search-clear" aria-label="Clear search" hidden>&times;</button>
+        </div>
+      </div>
+
+      <!-- Group 1: 28 States (4 columns of 7) -->
+      <div class="states-group" id="groupStates">
+        <h2 class="states-heading">Food from all states of India</h2>
+        <p class="states-subtext">Select any of the 28 states to explore traditional tiffin dishes and regional recipes</p>
+        <div class="states-card-box">
+          <div class="states-grid states-grid-28" id="gridStates" role="list"></div>
+        </div>
+      </div>
+
+      <!-- Group 2: 8 Union Territories (2 columns of 4) -->
+      <div class="states-group" id="groupUTs">
+        <h2 class="states-heading">Food from Union territories of India</h2>
+        <p class="states-subtext">Explore culinary traditions across all 8 Union Territories</p>
+        <div class="states-card-box ut-card-box">
+          <div class="states-grid states-grid-8" id="gridUTs" role="list"></div>
+        </div>
+      </div>
+
+      <!-- Empty search result message -->
+      <div id="statesEmptyMsg" class="states-empty" hidden>
+        <div class="states-empty-title">No state found</div>
+        <div class="states-empty-sub">Try a different spelling or clear the search bar to see all 28 states and 8 Union Territories.</div>
+      </div>
+
+    </div>
+
+    <!-- In-place State Overlay Card (e.g., Mizoram 5-dish accordion or "Recipes coming soon") -->
+    <div id="stateModal" class="state-modal" role="dialog" aria-modal="true" aria-labelledby="stateModalTitle" hidden>
+      <div class="state-modal-card">
+        <header class="state-modal-header">
+          <div>
+            <div class="state-modal-kicker">Regional Tiffin Archive</div>
+            <h3 class="state-modal-title" id="stateModalTitle">Mizoram</h3>
+            <p class="state-modal-sub" id="stateModalSub"></p>
+          </div>
+          <button type="button" id="stateModalClose" class="state-modal-close" aria-label="Close state card">&times;</button>
+        </header>
+        <div class="state-modal-body" id="stateModalBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="siteFooter" aria-label="Project footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-kicker">An Experience Publication Project</div>
+        <h2 class="footer-title">The Great Indian Tiffin Box</h2>
+        <p class="footer-tagline">A nostalgic journey through India&rsquo;s kitchens, one tiffin at a time.</p>
+
+        <div class="footer-follow">
+          <div class="footer-follow-label">Follow us</div>
+          <div class="footer-socials">
+            <a class="footer-ig-link" href="https://www.instagram.com/amogh_koparkar?knvt=bTlwM2U4djQ0Z24y&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">
+              <svg class="ig-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>
+              </svg>
+              <span>@amogh_koparkar</span>
+            </a>
+            <a class="footer-ig-link" href="https://www.instagram.com/parnakuti.apte?evlk=eWFrMnJuNnA2amps" target="_blank" rel="noopener noreferrer">
+              <svg class="ig-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>
+              </svg>
+              <span>@parnakuti.apte</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-qr-box">
+          <img src="assets/QrCode.png" alt="QR Code to explore The Great Indian Tiffin Box">
+        </div>
+        <div class="footer-qr-caption">Scan to explore</div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; The Great Indian Tiffin Box &middot; An Experience Publication</span>
+    </div>
+  </footer>
+
+  <button id="replayBtn" type="button" hidden>↺ Replay</button>
+
+  <!-- ingredient tooltip (kitchen) -->
+  <div id="tooltip" role="tooltip"></div>
+
+  <!-- ============ PDF POPUP ============ -->
+  <div id="pdfModal" role="dialog" aria-modal="true" aria-label="Lemon Rice recipe" hidden>
+    <div class="pdf-card">
+      <header class="pdf-bar">
+        <div class="pdf-name"><span class="pdf-ico">PDF</span> Lemon_Rice.pdf</div>
+        <div class="pdf-actions">
+          <button type="button" id="pdfPrint">🖨 Print</button>
+          <a id="pdfDownload" href="Lemon_Rice.pdf" download="Lemon_Rice.pdf">⬇ Download</a>
+          <button type="button" id="pdfClose" class="close">✕ Close</button>
+        </div>
+      </header>
+      <div class="pdf-body">
+        <iframe id="pdfFrame" title="Lemon Rice recipe (PDF)"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- black-to-reveal fade used at the very start / on replay -->
+  <div id="blackFade"></div>
+
+  <script src="hitmasks.js"></script>
+  <script src="states-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
